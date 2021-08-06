@@ -1,0 +1,14 @@
+ANGEL = 6491 -- esta es la ID de la creatura del angel que te revive
+
+function OnGossipHello(event, player, unit)
+if(player:IsAlive() == true) then -- Si el jugador esta vivo y le da clic le saldra el mensaje de abajo.
+player:SendBroadcastMessage("Ya estas vivo papi") 
+player:RemoveAura(15007) -- Aqui lo que hace es remover el aura o el debuff que te pone cuando mueres, no me acuerdo como se llama xD 
+else -- De lo contrario, si el jugador esta muerto entonces
+player:ResurrectPlayer(100, true) -- te revivira con toda la vida
+player:RemoveAura(15007) -- te removera el sckinners ese como se llame xD
+player:SendBroadcastMessage("Has revivido de la muerte.")
+end
+end
+
+RegisterCreatureGossipEvent(ANGEL, 1, OnGossipHello) -- con esto registrar el evento.
